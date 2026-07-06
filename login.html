@@ -8,17 +8,21 @@
 <meta name="robots" content="noindex, nofollow" />
 <link rel="stylesheet" href="css/style.css">
 <style>
-  body { min-height: 100svh; }
-  .login-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
-  .login-left { display: flex; flex-direction: column; justify-content: center; padding: 6vw 5vw; }
+  html, body { height: 100svh; overflow: hidden; margin: 0; }
+  .login-split { display: grid; grid-template-columns: 1fr 1fr; height: 100svh; }
+  .login-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(1rem, 4vh, 3rem) clamp(1.5rem, 5vw, 4rem);
+    height: 100%; overflow-y: auto; box-sizing: border-box;
+  }
   .login-left__inner { max-width: 400px; margin: 0 auto; width: 100%; }
-  .login-brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(2rem, 6vw, 4rem); }
+  .login-brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(1rem, 4vh, 3rem); }
   .login-brand svg { height: 20px; width: auto; }
   .login-brand svg path { fill: var(--ink); }
-  .login-title { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+  .login-title { font-size: clamp(1.6rem, 3vw + 1vh, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
   .login-title em { color: var(--violet); font-style: normal; }
   .login-lead { margin-top: 12px; color: var(--ink-70); font-size: 0.95rem; line-height: 1.55; }
-  .login-form { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; }
+  .login-form { margin-top: clamp(1rem, 3vh, 30px); display: flex; flex-direction: column; gap: 14px; }
   .login-field label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--ink-70); margin-bottom: 6px; }
   .login-field input {
     width: 100%; box-sizing: border-box; height: 52px; padding: 0 18px; border-radius: 14px;
@@ -36,23 +40,25 @@
   .login-submit:hover { background: var(--violet); transform: translateY(-1px); }
   .login-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
   .login-error { color: #dc2626; font-size: 0.85rem; min-height: 1.2em; }
-  .login-hint { margin-top: 22px; font-size: 0.78rem; color: var(--ink-30); }
+  .login-hint { margin-top: clamp(0.75rem, 3vh, 22px); font-size: 0.78rem; color: var(--ink-30); }
 
-  .login-right { position: relative; overflow: hidden; background: var(--violet); }
+  .login-right { position: relative; overflow: hidden; background: var(--violet); height: 100%; }
   .login-right img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.92; }
   .login-right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(119,71,255,0.25), rgba(10,10,10,0.55) 85%); }
   .login-right__mark { position: absolute; top: 28px; left: 32px; z-index: 2; height: 22px; }
   .login-right__mark svg path { fill: #fff; }
-  .login-right__quote { position: absolute; left: 32px; right: 32px; bottom: 32px; z-index: 2; color: #fff; }
+  .login-right__quote { position: absolute; left: 32px; right: 32px; bottom: clamp(1rem, 4vh, 32px); z-index: 2; color: #fff; }
   .login-right__quote .qmark { font-size: 2.4rem; color: rgba(255,255,255,0.55); line-height: 0.6; font-family: var(--gilroy); }
-  .login-right__quote blockquote { margin: 6px 0 0; font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; line-height: 1.32; letter-spacing: -0.01em; }
+  .login-right__quote blockquote { margin: 6px 0 0; font-size: clamp(1rem, 1vw + 1vh, 1.4rem); font-weight: 700; line-height: 1.32; letter-spacing: -0.01em; }
   .login-right__quote cite { display: block; margin-top: 16px; font-style: normal; font-size: 0.85rem; opacity: 0.85; }
   .login-right__quote cite b { display: block; font-size: 0.92rem; }
 
   @media (max-width: 860px) {
     .login-split { grid-template-columns: 1fr; }
     .login-right { display: none; }
-    .login-left { padding: 10vw 7vw; }
+  }
+  @media (max-height: 500px) {
+    .login-brand, .login-lead, .login-hint { display: none; }
   }
 </style>
 </head>
