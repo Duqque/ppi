@@ -487,8 +487,10 @@ section { position: relative; }
 /* ---------- ANNEXES — téléchargement CV & email ---------- */
 .cv-download-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
 .cv-download-row--3 { grid-template-columns: 1fr 1fr 1fr; }
+.cv-download-row--4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+@media (max-width: 1100px) { .cv-download-row--4 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 900px) { .cv-download-row--3 { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 700px) { .cv-download-row, .cv-download-row--3 { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .cv-download-row, .cv-download-row--3, .cv-download-row--4 { grid-template-columns: 1fr; } }
 .cv-download {
   display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--ink-12);
   border-radius: var(--radius-lg); padding: 16px 18px; transition: border-color .25s, transform .25s, box-shadow .25s;

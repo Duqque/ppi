@@ -110,6 +110,7 @@ app.post('/api/send-dossier', async (req, res) => {
       cvFrLink: `${origin}/assets/cv/CV-Quentin-Duquenne-FR.pdf`,
       cvEnLink: `${origin}/assets/cv/CV-Quentin-Duquenne-EN.pdf`,
       portfolioLink: `${origin}/assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf`,
+      dossierPdfLink: `${origin}/assets/dossier/PPI-Quentin-Duquenne-JUMP-M2.pdf`,
     });
 
     const result = await sendViaResend({

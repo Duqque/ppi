@@ -4,7 +4,7 @@
  * footer) pour un email envoyé via Resend (server.js).
  * ============================================================ */
 
-function buildDossierEmailHtml({ toEmail, ppiLink, cvFrLink, cvEnLink, portfolioLink }) {
+function buildDossierEmailHtml({ toEmail, ppiLink, cvFrLink, cvEnLink, portfolioLink, dossierPdfLink }) {
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -66,7 +66,7 @@ function buildDossierEmailHtml({ toEmail, ppiLink, cvFrLink, cvEnLink, portfolio
             </div>
             <p style="font-size:14px; line-height:1.6; color:#3a3a3a; margin-top:14px;">
               Bonjour,<br><br>
-              Voici, comme demandé, le dossier complet de mon Projet Personnel &amp; Individuel (PPI), mon CV ainsi que mon portfolio DQN Design. Tu peux tout consulter ou télécharger directement ci-dessous.
+              Voici, comme demandé, le dossier complet de mon Projet Personnel &amp; Individuel (PPI) au format PDF, le site interactif, mon CV ainsi que mon portfolio DQN Design. Tu peux tout consulter ou télécharger directement ci-dessous.
             </p>
           </td>
         </tr>
@@ -83,6 +83,27 @@ function buildDossierEmailHtml({ toEmail, ppiLink, cvFrLink, cvEnLink, portfolio
                     <tr>
                       <td style="background:#7747ff; border-radius:999px;">
                         <a href="${ppiLink}" style="display:inline-block; padding:11px 22px; font-size:13px; font-weight:700; color:#ffffff; text-decoration:none;">Ouvrir le dossier PPI →</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:14px 40px 6px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f3fe; border-radius:14px;">
+              <tr>
+                <td style="padding:22px 24px;">
+                  <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#7747ff; font-weight:700;">Dossier PDF</div>
+                  <div style="font-size:15px; font-weight:700; color:#0a0a0a; margin-top:6px;">Le PPI complet, en PDF</div>
+                  <div style="font-size:13px; color:#666; margin-top:2px;">Document officiel remis à JUMP — tests de personnalité, parcours, compétences, SWOT, projet professionnel, annexes.</div>
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:14px;">
+                    <tr>
+                      <td style="background:#7747ff; border-radius:999px;">
+                        <a href="${dossierPdfLink}" style="display:inline-block; padding:11px 22px; font-size:13px; font-weight:700; color:#ffffff; text-decoration:none;">Télécharger le PDF (77 pages) ↓</a>
                       </td>
                     </tr>
                   </table>
