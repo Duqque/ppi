@@ -1,10 +1,87 @@
+/* ============================================================
+ * PPI Quentin Duquenne — serveur statique + envoi email (Resend)
+ * ============================================================
+ * Envoi transactionnel du dossier PPI via Resend, même pattern
+ * que sur rokudan-saas (server/api-emails.mjs).
+ *
+ * Variables d'environnement requises (Hostinger > Node.js > Variables
+ * d'environnement, puis "Restart" l'app après les avoir ajoutées) :
+ *   RESEND_API_KEY      (re_xxx — depuis resend.com/api-keys)
+ *   RESEND_FROM_EMAIL   (par défaut : "Quentin Duquenne <onboarding@resend.dev>")
+ *
+ * Tant qu'aucun domaine n'est vérifié sur Resend, l'adresse d'envoi par
+ * défaut "onboarding@resend.dev" ne peut envoyer QUE vers l'adresse email
+ * du compte Resend (limitation sandbox de Resend, pas un bug ici). Pour
+ * envoyer vers n'importe quelle adresse (les vrais visiteurs du site) :
+ *   1. Resend -> Domains -> Add Domain -> quentinduquenne.fr (ou le domaine réel)
+ *   2. Ajoute les 3 enregistrements DNS fournis chez Hostinger (DNS / Nameservers)
+ *   3. Une fois vérifié, mets RESEND_FROM_EMAIL = "Quentin Duquenne <contact@quentinduquenne.fr>"
+ * ============================================================ */
+
 const express = require('express');
 const path = require('path');
+const { buildDossierEmailHtml } = require('./server/email-template');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const RESEND_API = 'https://api.resend.com/emails';
 
+app.use(express.json());
 app.use(express.static(path.join(__dirname), { extensions: ['html'] }));
+
+async function sendViaResend({ to, subject, html }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY absente. Configure-la dans les variables d'environnement Hostinger, puis redémarre l'app Node.");
+  }
+  const r = await fetch(RESEND_API, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: process.env.RESEND_FROM_EMAIL || 'Quentin Duquenne <onboarding@resend.dev>',
+      to: [to],
+      subject,
+      html,
+      reply_to: 'contact@quentinduquenne.fr',
+      tags: [{ name: 'project', value: 'ppi-quentin-duquenne' }],
+    }),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.message || `Resend a répondu ${r.status}`);
+  return data;
+}
+
+app.post('/api/send-dossier', async (req, res) => {
+  try {
+    const email = (req.body && req.body.email || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: 'Adresse email invalide.' });
+    }
+
+    const origin = `${req.protocol}://${req.get('host')}`;
+    const html = buildDossierEmailHtml({
+      toEmail: email,
+      ppiLink: `${origin}/`,
+      cvFrLink: `${origin}/assets/cv/CV-Quentin-Duquenne-FR.pdf`,
+      cvEnLink: `${origin}/assets/cv/CV-Quentin-Duquenne-EN.pdf`,
+      portfolioLink: `${origin}/assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf`,
+    });
+
+    const result = await sendViaResend({
+      to: email,
+      subject: 'Ton dossier PPI — Quentin Duquenne',
+      html,
+    });
+
+    return res.json({ ok: true, id: result.id });
+  } catch (err) {
+    console.error('[/api/send-dossier]', err.message);
+    return res.status(500).json({ error: err.message || "Erreur d'envoi." });
+  }
+});
 
 app.get('*', (req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'index.html'));

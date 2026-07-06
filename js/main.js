@@ -1,32 +1,28 @@
 /* ============================================
-   ENVOI AUTOMATIQUE DU DOSSIER PAR EMAIL — via EmailJS (100% front-end, sans backend)
-   Pour activer l'envoi réellement automatique :
-   1. Crée un compte gratuit sur https://www.emailjs.com
-   2. Connecte ta boîte mail (Gmail, Outlook...) comme "Email Service" -> récupère le SERVICE_ID
-   3. Crée un "Email Template" en collant le contenu de email-template.html (à la racine du repo)
-      dans l'éditeur "Code" du template EmailJS. Le champ "To email" du template doit être
-      {{to_email}}. Les variables {{ppi_link}}, {{cv_fr_link}}, {{cv_en_link}} et
-      {{portfolio_link}} sont injectées automatiquement par le code ci-dessous (URLs absolues
-      calculées à partir du domaine réel une fois le site déployé) -> récupère le TEMPLATE_ID
-   4. Récupère ta "Public Key" dans Account > General
-   5. Remplace les 3 valeurs ci-dessous. Tant qu'elles ne sont pas renseignées, chaque formulaire
-      bascule automatiquement sur un mailto: pré-rempli (aucune configuration requise).
+   ENVOI AUTOMATIQUE DU DOSSIER PAR EMAIL — via Resend (backend server.js)
+   Le formulaire poste vers /api/send-dossier (voir server.js), qui appelle
+   l'API Resend côté serveur — même architecture que sur rokudan-saas.
+   Pour que l'envoi fonctionne réellement en prod (Hostinger Node) :
+   1. Compte gratuit sur https://resend.com
+   2. Resend > API Keys > Create API Key -> copie la clé "re_xxx"
+   3. Hostinger > Node.js > Variables d'environnement, ajoute :
+        RESEND_API_KEY = re_xxx
+        RESEND_FROM_EMAIL = Quentin Duquenne <onboarding@resend.dev>
+      (onboarding@resend.dev fonctionne sans configuration DNS, mais ne peut
+      envoyer que vers l'email du compte Resend — pour envoyer à n'importe
+      quel visiteur, vérifie ton propre domaine dans Resend > Domains, puis
+      utilise RESEND_FROM_EMAIL = Quentin Duquenne <contact@quentinduquenne.fr>)
+   4. Redémarre l'app Node dans Hostinger
+   Tant que RESEND_API_KEY n'est pas configurée (ou si le site tourne en
+   statique pur, sans serveur Node), le formulaire bascule automatiquement
+   sur un mailto: pré-rempli.
    ============================================ */
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_READY = ![EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID].some(v => v.startsWith('YOUR_'));
-
-if (EMAILJS_READY && window.emailjs) {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
-
 function wireEmailForm(formId, inputId, statusId) {
   const form = document.getElementById(formId);
   const status = document.getElementById(statusId);
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const input = document.getElementById(inputId);
     const email = input.value.trim();
@@ -41,37 +37,36 @@ function wireEmailForm(formId, inputId, statusId) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Envoi en cours…';
 
-    const base = window.location.origin + window.location.pathname.replace(/index\.html$/, '');
-    const templateParams = {
-      to_email: email,
-      ppi_link: window.location.origin + window.location.pathname,
-      cv_fr_link: base + 'assets/cv/CV-Quentin-Duquenne-FR.pdf',
-      cv_en_link: base + 'assets/cv/CV-Quentin-Duquenne-EN.pdf',
-      portfolio_link: base + 'assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf',
-    };
-
-    if (EMAILJS_READY && window.emailjs) {
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(() => {
-          status.textContent = 'C\'est envoyé ! Vérifie ta boîte mail (et les spams).';
-          status.className = 'email-capture__status is-ok';
-          form.reset();
-        })
-        .catch(() => {
-          status.textContent = 'Erreur d\'envoi — réessaie ou écris à contact@quentinduquenne.fr.';
-          status.className = 'email-capture__status is-err';
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalLabel;
-        });
-    } else {
-      // Repli sans configuration EmailJS : ouvre un email pré-rempli vers Quentin
+    function fallbackMailto(message) {
       const subject = encodeURIComponent('Demande du dossier PPI complet');
       const body = encodeURIComponent(`Bonjour Quentin,\n\nPourriez-vous m'envoyer le dossier PPI complet (CV + portfolio) ?\nMon email : ${email}\n\nMerci !`);
       window.location.href = `mailto:contact@quentinduquenne.fr?subject=${subject}&body=${body}`;
-      status.textContent = 'Configuration email en attente — ton client mail va s\'ouvrir pour envoyer la demande directement.';
+      status.textContent = message;
       status.className = 'email-capture__status is-ok';
+    }
+
+    try {
+      const res = await fetch('/api/send-dossier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        status.textContent = 'C\'est envoyé ! Vérifie ta boîte mail (et les spams).';
+        status.className = 'email-capture__status is-ok';
+        form.reset();
+      } else if (res.status === 404) {
+        // Pas de backend disponible (site servi en statique pur)
+        fallbackMailto('Envoi automatique indisponible ici — ton client mail va s\'ouvrir pour envoyer la demande directement.');
+      } else {
+        status.textContent = (data && data.error) || 'Erreur d\'envoi — réessaie ou écris à contact@quentinduquenne.fr.';
+        status.className = 'email-capture__status is-err';
+      }
+    } catch (err) {
+      fallbackMailto('Envoi automatique indisponible — ton client mail va s\'ouvrir pour envoyer la demande directement.');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalLabel;
     }

@@ -1,20 +1,18 @@
-<!--
-  TEMPLATE EMAIL — à coller dans EmailJS (Email Templates > ton template > onglet "Code")
-  Variables utilisées (remplies automatiquement par js/main.js à l'envoi) :
-    {{to_email}}         adresse du destinataire (à mettre aussi dans le champ "To email" du template EmailJS)
-    {{ppi_link}}         URL du site PPI complet
-    {{cv_fr_link}}       URL du CV PDF (FR, 3 pages)
-    {{cv_en_link}}       URL du CV PDF (EN, 1 page)
-    {{portfolio_link}}   URL du portfolio DQN Design (PDF)
--->
-<!doctype html>
+/* ============================================================
+ * Template HTML de l'email "Dossier PPI" — Quentin Duquenne
+ * Reprend exactement la charte du site (cover violet, cartes,
+ * footer) pour un email envoyé via Resend (server.js).
+ * ============================================================ */
+
+function buildDossierEmailHtml({ toEmail, ppiLink, cvFrLink, cvEnLink, portfolioLink }) {
+  return `<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projet Personnel &amp; Individuel — Quentin Duquenne</title>
 <!--[if mso]>
-<style>table {border-collapse collapse; font-family: Arial, sans-serif;}</style>
+<style>table {border-collapse:collapse; font-family: Arial, sans-serif;}</style>
 <![endif]-->
 </head>
 <body style="margin:0; padding:0; background:#efeaff; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;">
@@ -23,7 +21,6 @@
     <td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background:#ffffff; border-radius:20px; overflow:hidden;">
 
-        <!-- COVER -->
         <tr>
           <td style="background:#7747ff; padding:40px 40px 34px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
@@ -61,7 +58,6 @@
           </td>
         </tr>
 
-        <!-- INTRO -->
         <tr>
           <td style="padding:34px 40px 8px;">
             <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#7747ff; font-weight:700;">● Ton dossier est prêt</div>
@@ -75,7 +71,6 @@
           </td>
         </tr>
 
-        <!-- LIENS / CTA -->
         <tr>
           <td style="padding:10px 40px 6px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f3fe; border-radius:14px;">
@@ -87,7 +82,7 @@
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:14px;">
                     <tr>
                       <td style="background:#7747ff; border-radius:999px;">
-                        <a href="{{ppi_link}}" style="display:inline-block; padding:11px 22px; font-size:13px; font-weight:700; color:#ffffff; text-decoration:none;">Ouvrir le dossier PPI →</a>
+                        <a href="${ppiLink}" style="display:inline-block; padding:11px 22px; font-size:13px; font-weight:700; color:#ffffff; text-decoration:none;">Ouvrir le dossier PPI →</a>
                       </td>
                     </tr>
                   </table>
@@ -105,7 +100,7 @@
                   <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#7747ff; font-weight:700;">CV</div>
                   <div style="font-size:14px; font-weight:700; color:#0a0a0a; margin-top:6px;">Version FR (3 pages)</div>
                   <div style="margin-top:12px;">
-                    <a href="{{cv_fr_link}}" style="font-size:13px; font-weight:700; color:#7747ff; text-decoration:none;">Télécharger ↓</a>
+                    <a href="${cvFrLink}" style="font-size:13px; font-weight:700; color:#7747ff; text-decoration:none;">Télécharger ↓</a>
                   </div>
                 </td>
                 <td width="4%">&nbsp;</td>
@@ -113,7 +108,7 @@
                   <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#7747ff; font-weight:700;">CV</div>
                   <div style="font-size:14px; font-weight:700; color:#0a0a0a; margin-top:6px;">English version</div>
                   <div style="margin-top:12px;">
-                    <a href="{{cv_en_link}}" style="font-size:13px; font-weight:700; color:#7747ff; text-decoration:none;">Download ↓</a>
+                    <a href="${cvEnLink}" style="font-size:13px; font-weight:700; color:#7747ff; text-decoration:none;">Download ↓</a>
                   </div>
                 </td>
               </tr>
@@ -130,7 +125,7 @@
                   <div style="font-size:14px; font-weight:700; color:#ffffff; margin-top:6px;">DQN Design — Identités visuelles 2020-2022</div>
                   <div style="font-size:12.5px; color:rgba(255,255,255,0.6); margin-top:2px;">Logos &amp; identités de marque réalisés en freelance.</div>
                   <div style="margin-top:12px;">
-                    <a href="{{portfolio_link}}" style="font-size:13px; font-weight:700; color:#ffffff; text-decoration:underline;">Voir le portfolio ↓</a>
+                    <a href="${portfolioLink}" style="font-size:13px; font-weight:700; color:#ffffff; text-decoration:underline;">Voir le portfolio ↓</a>
                   </div>
                 </td>
               </tr>
@@ -138,7 +133,6 @@
           </td>
         </tr>
 
-        <!-- FOOTER -->
         <tr>
           <td style="background:#0a0a0a; padding:26px 40px;">
             <div style="font-size:14px; font-weight:700; color:#ffffff;">Quentin Duquenne</div>
@@ -154,10 +148,13 @@
       </table>
 
       <div style="max-width:600px; padding:16px 12px 0; font-size:11px; color:#8b7fb0; text-align:center;">
-        Ce message a été envoyé automatiquement suite à ta demande sur le dossier PPI de Quentin Duquenne ({{to_email}}).
+        Ce message a été envoyé automatiquement suite à ta demande sur le dossier PPI de Quentin Duquenne (${toEmail}).
       </div>
     </td>
   </tr>
 </table>
 </body>
-</html>
+</html>`;
+}
+
+module.exports = { buildDossierEmailHtml };
