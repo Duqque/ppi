@@ -55,13 +55,18 @@ app.get('/api/session', (req, res) => {
 // ---- Protection d'accès : rien du dossier sans session valide ----
 app.use(requireAuth);
 
-// ---- Fichiers statiques (avec cache long pour assets versionnés) ----
+// ---- Fichiers statiques ----
+// Cache long uniquement pour les fichiers lourds et rarement modifiés
+// (photos, PDF, fonts). HTML/CSS/JS restent en no-cache : ce ne sont pas
+// des fichiers versionnés (pas de hash dans le nom), donc un cache long
+// empêcherait les visiteurs de voir les mises à jour du site.
 app.use(express.static(path.join(__dirname), {
   extensions: ['html'],
-  maxAge: ONE_WEEK,
   setHeaders: (res, filePath) => {
-    if (/\.(html)$/.test(filePath)) {
+    if (/\.(html|css|js)$/.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache');
+    } else {
+      res.setHeader('Cache-Control', `public, max-age=${ONE_WEEK / 1000}`);
     }
   },
 }));

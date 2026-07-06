@@ -495,9 +495,9 @@ section { position: relative; }
 }
 .cv-download:hover { border-color: var(--violet); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .cv-download__icon { width: 42px; height: 42px; border-radius: 12px; background: var(--violet); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
-.cv-download__icon svg { width: 20px; height: 20px; }
+.cv-download__icon svg { width: 20px; height: 20px; color: #fff; }
 .cv-download b { display: block; font-size: 0.92rem; }
-.cv-download span { display: block; font-size: 0.78rem; color: var(--ink-50); margin-top: 1px; }
+.cv-download__text span { display: block; font-size: 0.78rem; color: var(--ink-50); margin-top: 1px; }
 .cv-download__arrow { margin-left: auto; color: var(--ink-30); }
 
 .email-capture { margin-top: 20px; }
