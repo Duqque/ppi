@@ -451,7 +451,7 @@ section { position: relative; }
 }
 
 .qd-footer__big { display: block; font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #fff; text-decoration: none; }
-.qd-footer__big em { color: rgba(255,255,255,0.6); font-style: normal; }
+.qd-footer__big em { display: inline-block; margin-top: 4px; font-size: 0.6em; font-weight: 600; color: rgba(255,255,255,0.6); font-style: normal; }
 .qd-footer__small { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
 
 .qd-footer__maplink {
