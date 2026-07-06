@@ -7,6 +7,7 @@
 <title>Quentin Duquenne — Projet Personnel & Individuel · JUMP</title>
 <meta name="description" content="Projet Personnel et Individuel de Quentin Duquenne — Mastère Management du Sport, JUMP Académie des Métiers du Sport. Parcours, compétences, projet professionnel." />
 <link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -188,14 +189,27 @@
       <div class="grid grid--2">
         <div class="card reveal" id="t-mareussite">
           <h3>Test 1 — MaRéussite</h3>
-          <p style="margin-top:12px; color:var(--ink-70); font-size:0.94rem; line-height:1.6">Le sentiment qu'il faut être « parfait » pour être aimé, avec quatre effets : excellence, renonciation, procrastination, insatisfaction. Je repère vite les imperfections et peux paraître critique.</p>
+          <p style="margin-top:12px; color:var(--ink-70); font-size:0.94rem; line-height:1.6">Ma motivation profonde : être quelqu'un de bien — volonté de progresser, grande exigence, certain idéalisme. Mes valeurs : l'évolution, la réussite (vécue comme un évitement de l'échec), la qualité, une éthique forte. J'ai très tôt développé le sentiment qu'il fallait être « parfait » pour être aimé, d'où quatre effets :</p>
+          <ul class="test-list">
+            <li><b>Excellence</b> le soin du détail</li>
+            <li><b>Renonciation</b> abandonner par peur de mal faire</li>
+            <li><b>Procrastination</b> repousser car la barre est trop haute</li>
+            <li><b>Insatisfaction</b> un défaut peut tout gâcher</li>
+          </ul>
+          <p class="trait-note">Je repère immédiatement les imperfections, je peux paraître critique, et je privilégie mes « devoirs » sur mes envies réelles.</p>
         </div>
         <div class="card card--violet reveal" id="t-16p">
           <h3>Test 3 — 16Personalities</h3>
           <p class="card__sub" style="margin-top:6px; font-weight:700; font-size:1.05rem">LOGISTICIEN — INTP-A</p>
-          <p style="margin-top:12px; font-size:0.94rem; line-height:1.6; opacity:0.92">Curieux, analytique, autonome. J'excelle dans l'analyse et les solutions originales — mais j'ai du mal avec la routine et les cadres rigides.</p>
+          <p style="margin-top:12px; font-size:0.94rem; line-height:1.6; opacity:0.92">Curieux, analytique et attaché à l'autonomie, j'excelle dans la recherche, l'analyse et la conception de solutions originales ; je repère vite les incohérences, mais j'ai du mal avec la routine et les cadres rigides.</p>
+          <p style="margin-top:10px; font-size:0.86rem; line-height:1.55; opacity:0.8"><b>Forces :</b> perspectives novatrices, curiosité, adaptabilité, détection de motifs.<br><b>Vigilance :</b> difficulté à terminer, procrastination, manque d'autopromotion.</p>
         </div>
       </div>
+
+      <figure class="intp-figure reveal">
+        <img src="assets/photos/intp-illustration.png" alt="Illustration du profil Logisticien INTP-A, 16Personalities">
+        <figcaption>Profil <b>Logisticien — INTP-A</b>, tel que décrit par 16Personalities.com</figcaption>
+      </figure>
 
       <div class="card reveal" style="margin-top:20px">
         <h3>Mes traits — 16Personalities</h3>
@@ -235,6 +249,7 @@
             <div class="trait-bar__head"><span>Ouverture d'esprit</span><span>77/100</span></div>
             <div class="trait-bar__track"><div class="trait-bar__fill"></div></div>
           </div>
+          <p class="trait-note">Imagination maximale (20/20), Intellect 16/20 — <b style="color:var(--violet)">un esprit qui explore.</b></p>
           <div class="facet-grid">
             <div class="facet"><b>20</b><span>Imagination</span></div>
             <div class="facet"><b>12</b><span>Sens artistique</span></div>
@@ -248,6 +263,7 @@
             <div class="trait-bar__head"><span>Extraversion</span><span>72/100</span></div>
             <div class="trait-bar__track"><div class="trait-bar__fill"></div></div>
           </div>
+          <p class="trait-note">Assurance 17/20, Enthousiasme 15/20 — <b style="color:var(--violet)">je sais m'affirmer.</b></p>
           <div class="facet-grid">
             <div class="facet"><b>10</b><span>Bienveillance</span></div>
             <div class="facet"><b>7</b><span>Conformisme</span></div>
@@ -261,6 +277,7 @@
             <div class="trait-bar__head"><span>Convivialité</span><span>67/100</span></div>
             <div class="trait-bar__track"><div class="trait-bar__fill"></div></div>
           </div>
+          <p class="trait-note">Moralité très élevée (17/20), Modestie très basse (4/20).</p>
           <div class="facet-grid">
             <div class="facet"><b>9</b><span>Confiance</span></div>
             <div class="facet"><b>17</b><span>Moralité</span></div>
@@ -274,6 +291,7 @@
             <div class="trait-bar__head"><span>Névrosisme</span><span>66/100</span></div>
             <div class="trait-bar__track"><div class="trait-bar__fill"></div></div>
           </div>
+          <p class="trait-note">Anxiété 16/20, mais colère et dépression basses.</p>
           <div class="facet-grid">
             <div class="facet"><b>16</b><span>Anxiété</span></div>
             <div class="facet"><b>9</b><span>Colère</span></div>
@@ -284,6 +302,7 @@
         </div>
       </div>
       <div class="reveal" style="margin-top:16px">
+        <p class="trait-note">Côté conscience : Auto-efficacité et Persévérance élevées (16/20), mais Organisation très basse (7/20).</p>
         <div class="facet-grid" style="grid-template-columns:repeat(5,1fr)">
           <div class="facet"><b>16</b><span>Auto-efficacité</span></div>
           <div class="facet"><b>7</b><span>Organisation</span></div>
@@ -291,7 +310,7 @@
           <div class="facet"><b>16</b><span>Persévérance</span></div>
           <div class="facet"><b>11</b><span>Auto-discipline</span></div>
         </div>
-        <p style="margin-top:12px; font-size:0.85rem; color:var(--ink-50)">Organisation très basse (7/20) : l'une des clés de ma procrastination.</p>
+        <p style="margin-top:12px; font-size:0.85rem; color:var(--ink-50)">Je me sens capable d'accomplir ce que j'entreprends, mais je suis peu organisé quand je ne suis pas intéressé par le domaine — l'une des clés de ma procrastination.</p>
       </div>
 
       <div class="card card--ink reveal" id="t-conclusion" style="margin-top:32px">
@@ -384,60 +403,77 @@
     </div>
 
     <div class="wrap section-body">
-      <div class="card reveal">
+      <div class="parcours-grid">
 
-        <div class="story-block" id="p-origine">
-          <div class="story-block__head"><span class="story-block__num">01</span><span class="story-block__title">À l'origine</span></div>
-          <p>Leforest (62), judo depuis 2004. Très vite, un cadre de construction personnelle plus qu'un loisir : la performance se joue dans les détails et la régularité.</p>
+        <div class="parcours-card parcours-card--feature reveal" id="p-origine">
+          <img src="assets/photos/parcours/origine.jpg" alt="Cours de judo pour jeunes enfants au JCCMM">
+          <div class="parcours-card--feature__body">
+            <div class="parcours-card__top"><span class="parcours-num">01</span></div>
+            <h4>À l'origine</h4>
+            <p>Leforest (62), judo depuis 2004. Très vite, un cadre de construction personnelle plus qu'un loisir : la performance se joue dans les détails et la régularité.</p>
+          </div>
         </div>
 
-        <div class="story-block" id="p-lycee">
-          <div class="story-block__head"><span class="story-block__num">02</span><span class="story-block__title">Le lycée et le Pôle Espoirs</span></div>
+        <div class="parcours-card reveal" id="p-lycee">
+          <div class="parcours-card__top"><span class="parcours-num">02</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span></div>
+          <h4>Le lycée et le Pôle Espoirs</h4>
           <p>Pôle Espoirs de Tourcoing à 15 ans + Bac ES en internat. Journées millimétrées : j'apprends à hiérarchiser et anticiper.</p>
         </div>
 
-        <div class="story-block" id="p-civique">
-          <div class="story-block__head"><span class="story-block__num">03</span><span class="story-block__title">Service civique à la Ligue HDF</span></div>
+        <div class="parcours-card reveal" id="p-civique">
+          <div class="parcours-card__top"><span class="parcours-num">03</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span></div>
+          <h4>Service civique à la Ligue HDF</h4>
           <p>Suivi des jeunes, relais internat/entraîneurs, premiers visuels de communication. Je découvre PhotoFiltre puis Photoshop.</p>
         </div>
 
-        <div class="story-block" id="p-couverture">
-          <div class="story-block__head"><span class="story-block__num">04</span><span class="story-block__title">Luc Daniel Couverture</span></div>
+        <div class="parcours-card reveal" id="p-couverture">
+          <div class="parcours-card__top"><span class="parcours-num">04</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span></div>
+          <h4>Luc Daniel Couverture</h4>
           <p>Trois semaines de travail manuel en 2017 pour financer un voyage au Japon. Un choc de réalité sur le lien effort-résultat.</p>
         </div>
 
-        <div class="story-block" id="p-staps">
-          <div class="story-block__head"><span class="story-block__num">05</span><span class="story-block__title">La Faculté STAPS</span></div>
+        <div class="parcours-card reveal" id="p-staps">
+          <div class="parcours-card__top"><span class="parcours-num">05</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span></div>
+          <h4>La Faculté STAPS</h4>
           <p>Amphis et cours magistraux ne me correspondent pas — formé dans l'action, sur le tatami. Réorientation lucide vers le web design.</p>
         </div>
 
-        <div class="story-block" id="p-mjm">
-          <div class="story-block__head"><span class="story-block__num">06</span><span class="story-block__title">MJM Graphic Design</span></div>
+        <div class="parcours-card reveal" id="p-mjm">
+          <div class="parcours-card__top"><span class="parcours-num">06</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span></div>
+          <h4>MJM Graphic Design</h4>
           <p>Titre RNCP Concepteur de Sites Web, mention Bien. Juillet 2020 : création de DQN Design — j'entre dans l'entrepreneuriat.</p>
         </div>
 
-        <div class="story-block" id="p-diplomes">
-          <div class="story-block__head"><span class="story-block__num">07</span><span class="story-block__title">Les diplômes d'état</span></div>
+        <div class="parcours-card reveal" id="p-diplomes">
+          <div class="parcours-card__top"><span class="parcours-num">07</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg></span></div>
+          <h4>Les diplômes d'état</h4>
           <p>BPJEPS (2021) puis DEJEPS à la Dojo Academy — 1ère promotion, non validé pour raisons personnelles mais étape structurante.</p>
         </div>
 
-        <div class="story-block" id="p-jfp">
-          <div class="story-block__head"><span class="story-block__num">08</span><span class="story-block__title">Judo France Paris &amp; PUC</span> <span class="org-chip"><img src="assets/logo/puc.svg" alt=""><span>PUC</span></span></div>
+        <div class="parcours-card reveal" id="p-jfp">
+          <div class="parcours-card__top"><span class="parcours-num">08</span><span class="org-chip"><img src="assets/logo/puc.svg" alt=""><span>PUC</span></span></div>
+          <h4>Judo France Paris &amp; PUC</h4>
           <p>Professeur au groupe scolaire Fénelon Sainte-Marie (4-18 ans). L'expérience me révèle ce que je recherche : du haut niveau, de l'ambition.</p>
         </div>
 
-        <div class="story-block" id="p-jccmm">
-          <div class="story-block__head"><span class="story-block__num">09</span><span class="story-block__title">Le JC Chilly-Mazarin Morangis</span> <span class="org-chip"><img src="assets/logo/jccmm.svg" alt=""><span>JCCMM</span></span></div>
-          <p>Depuis 2024, Responsable Cadets HN &amp; Chargé Com./Développement. 4 médailles nationales, 3 renforts internationaux recrutés en République Tchèque, MyJCCMM conçu et déployé.</p>
+        <div class="parcours-card parcours-card--feature reveal" id="p-jccmm">
+          <img src="assets/photos/parcours/jccmm.jpg" alt="Athlète du JCCMM en concentration avant un combat">
+          <div class="parcours-card--feature__body">
+            <div class="parcours-card__top"><span class="parcours-num">09</span><span class="org-chip"><img src="assets/logo/jccmm.svg" alt=""><span>JCCMM</span></span></div>
+            <h4>Le JC Chilly-Mazarin Morangis</h4>
+            <p>Depuis 2024, Responsable Cadets HN &amp; Chargé Com./Développement. 4 médailles nationales, 3 renforts internationaux recrutés en République Tchèque, MyJCCMM conçu et déployé.</p>
+          </div>
         </div>
 
-        <div class="story-block" id="p-mastere">
-          <div class="story-block__head"><span class="story-block__num">10</span><span class="story-block__title">Mastère Management du Sport</span> <span class="org-chip"><img src="assets/logo/jump.svg" alt=""><span>JUMP</span></span></div>
+        <div class="parcours-card reveal" id="p-mastere">
+          <div class="parcours-card__top"><span class="parcours-num">10</span><span class="org-chip"><img src="assets/logo/jump.svg" alt=""><span>JUMP</span></span></div>
+          <h4>Mastère Management du Sport</h4>
           <p>Titre Manager du Développement Commercial. Mémoire : « Pourquoi le judo doit-il se réinventer pour se professionnaliser ? »</p>
         </div>
 
-        <div class="story-block" id="p-demain">
-          <div class="story-block__head"><span class="story-block__num">11</span><span class="story-block__title">Demain</span> <span class="org-chip"><img src="assets/logo/benfica.svg" alt=""><span>Benfica</span></span></div>
+        <div class="parcours-card reveal" id="p-demain">
+          <div class="parcours-card__top"><span class="parcours-num">11</span><span class="org-chip"><img src="assets/logo/benfica.svg" alt=""><span>Benfica</span></span></div>
+          <h4>Demain</h4>
           <p>Court terme : coach au Portugal. D'ici 3-4 ans : direction technique ou sportive. Projet ultime : une entreprise entre sport et digital.</p>
         </div>
 
@@ -500,7 +536,23 @@
       <div class="grid grid--2" style="margin-top:20px" id="c-hard-soft">
         <div class="card reveal">
           <h3>Hard skills</h3>
-          <p style="margin-top:14px; font-size:0.95rem; line-height:1.7; color:var(--ink-70)">Adobe Creative Cloud, Figma, Sketch, WordPress, Notion, Office, Base44, Claude.</p>
+          <div class="skill-icons">
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#001E36; color:#31A8FF">Ps</span><span>Photoshop</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#330000; color:#FF9A00">Ai</span><span>Illustrator</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#4B0028; color:#FF3366">Id</span><span>InDesign</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#470137; color:#FF61F6">Xd</span><span>Adobe XD</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#001E36; color:#31A8FF">Lr</span><span>Lightroom</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#0a0a0a; color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><path d="M9 13h6M9 17h4"/></svg></span><span>Acrobat</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#0a0a0a"><svg viewBox="0 0 38 57" width="24" height="24"><path fill="#0acf83" d="M19 28.5a9.5 9.5 0 1 1 0 19 9.5 9.5 0 0 1-9.5-9.5v-9.5z"/><path fill="#a259ff" d="M9.5 28.5V9.5H19v19z"/><path fill="#f24e1e" d="M9.5 9.5V0H19v9.5z"/><path fill="#ff7262" d="M0 9.5A9.5 9.5 0 0 1 9.5 0v9.5z"/><path fill="#1abcfe" d="M0 28.5A9.5 9.5 0 0 1 9.5 19v9.5z"/></svg></span><span>Figma</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#F7B500; color:#0a0a0a"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 9l9 13 9-13z"/></svg></span><span>Sketch</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#00164e; color:#fff">W</span><span>WordPress</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#f2f0e9; color:#0a0a0a">N</span><span>Notion</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#185ABD; color:#fff">W</span><span>Word</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#107C41; color:#fff">X</span><span>Excel</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#C43E1C; color:#fff">P</span><span>PowerPoint</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:linear-gradient(135deg,#ff8a5c,#e05252); color:#fff">B44</span><span>Base44</span></div>
+            <div class="skill-icon"><span class="skill-icon__tile" style="background:#D97757; color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v6M12 16v6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M2 12h6M16 12h6M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2"/></svg></span><span>Claude</span></div>
+          </div>
         </div>
         <div class="card card--ink reveal">
           <h3>Soft skills</h3>
@@ -799,6 +851,38 @@
       </div>
 
       <div class="card reveal" style="margin-top:20px">
+        <span class="pill-tag">Télécharger</span>
+        <div class="cv-download-row cv-download-row--3">
+          <a class="cv-download" href="assets/cv/CV-Quentin-Duquenne-FR.pdf" download>
+            <span class="cv-download__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+            <span><b>CV — Version FR</b><span>PDF · 3 pages</span></span>
+            <span class="cv-download__arrow">↓</span>
+          </a>
+          <a class="cv-download" href="assets/cv/CV-Quentin-Duquenne-EN.pdf" download>
+            <span class="cv-download__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+            <span><b>CV — English version</b><span>PDF · 1 page</span></span>
+            <span class="cv-download__arrow">↓</span>
+          </a>
+          <a class="cv-download" href="assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf" download>
+            <span class="cv-download__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M20.4 15.5 16 11l-7 7"/></svg></span>
+            <span><b>Portfolio — DQN Design</b><span>Identités visuelles 2020-2022</span></span>
+            <span class="cv-download__arrow">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card card--violet reveal email-capture" style="margin-top:20px">
+        <span class="pill-tag" style="background:rgba(255,255,255,0.2); color:#fff">Recevoir par email</span>
+        <h3 style="margin-top:14px">Le dossier PPI complet, <em style="color:rgba(255,255,255,0.7); font-style:normal">envoyé automatiquement.</em></h3>
+        <p style="margin-top:10px; font-size:0.9rem; opacity:0.9; max-width:40rem">Entre ton email : tu reçois immédiatement le CV et le lien du dossier complet, sans action de ma part.</p>
+        <form class="email-capture__row" id="pdfEmailForm" novalidate>
+          <input type="email" name="email" id="pdfEmailInput" placeholder="ton@email.fr" required>
+          <button type="submit">Recevoir le PDF</button>
+        </form>
+        <p class="email-capture__status" id="pdfEmailStatus"></p>
+      </div>
+
+      <div class="card reveal" style="margin-top:20px">
         <span class="pill-tag">Lettre de motivation — extrait</span>
         <p style="margin-top:16px; font-size:0.94rem; color:var(--ink-70); line-height:1.75; max-width:56rem">« I am a young, ambitious coach driven by a constant pursuit of the details that can make all the difference in performance. I developed two web platforms: MyJCCMM, an athlete tracking tool, and an educational tool for young children to prepare for their belt tests through quizzes and games. »</p>
         <p style="margin-top:14px; font-size:0.85rem; color:var(--ink-50)">— Lettre adressée à Telma Monteiro, SL Benfica Judo</p>
@@ -821,9 +905,14 @@
     <div class="wrap">
       <span class="section-label" style="justify-content:center">Merci de votre lecture</span>
       <h2 style="margin-top:14px">Le dossier complet, <em>sur demande.</em></h2>
+      <p style="margin-top:10px; color:var(--ink-70); font-size:0.95rem">Entre ton email : CV, dossier PPI et portfolio DQN Design arrivent directement dans ta boîte.</p>
+      <form class="email-capture__row email-capture__row--center" id="pdfEmailFormMain" novalidate>
+        <input type="email" name="email" id="pdfEmailInputMain" placeholder="ton@email.fr" required>
+        <button type="submit" class="btn-violet">Recevoir le PDF complet <span>→</span></button>
+      </form>
+      <p class="email-capture__status" id="pdfEmailStatusMain"></p>
       <div class="cta-end__row">
-        <a href="mailto:contact@quentinduquenne.fr" class="btn-violet">Recevoir le PDF complet <span>→</span></a>
-        <a href="https://quentinduquenne.fr" class="btn-ghost">Voir mon portfolio</a>
+        <a href="assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf" target="_blank" rel="noopener" class="btn-ghost">Voir mon portfolio</a>
       </div>
     </div>
   </section>

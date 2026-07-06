@@ -1,4 +1,88 @@
+/* ============================================
+   ENVOI AUTOMATIQUE DU DOSSIER PAR EMAIL — via EmailJS (100% front-end, sans backend)
+   Pour activer l'envoi réellement automatique :
+   1. Crée un compte gratuit sur https://www.emailjs.com
+   2. Connecte ta boîte mail (Gmail, Outlook...) comme "Email Service" -> récupère le SERVICE_ID
+   3. Crée un "Email Template" en collant le contenu de email-template.html (à la racine du repo)
+      dans l'éditeur "Code" du template EmailJS. Le champ "To email" du template doit être
+      {{to_email}}. Les variables {{ppi_link}}, {{cv_fr_link}}, {{cv_en_link}} et
+      {{portfolio_link}} sont injectées automatiquement par le code ci-dessous (URLs absolues
+      calculées à partir du domaine réel une fois le site déployé) -> récupère le TEMPLATE_ID
+   4. Récupère ta "Public Key" dans Account > General
+   5. Remplace les 3 valeurs ci-dessous. Tant qu'elles ne sont pas renseignées, chaque formulaire
+      bascule automatiquement sur un mailto: pré-rempli (aucune configuration requise).
+   ============================================ */
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_READY = ![EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID].some(v => v.startsWith('YOUR_'));
+
+if (EMAILJS_READY && window.emailjs) {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
+function wireEmailForm(formId, inputId, statusId) {
+  const form = document.getElementById(formId);
+  const status = document.getElementById(statusId);
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValid) {
+      status.textContent = 'Merci de renseigner une adresse email valide.';
+      status.className = 'email-capture__status is-err';
+      return;
+    }
+    const submitBtn = form.querySelector('button');
+    const originalLabel = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours…';
+
+    const base = window.location.origin + window.location.pathname.replace(/index\.html$/, '');
+    const templateParams = {
+      to_email: email,
+      ppi_link: window.location.origin + window.location.pathname,
+      cv_fr_link: base + 'assets/cv/CV-Quentin-Duquenne-FR.pdf',
+      cv_en_link: base + 'assets/cv/CV-Quentin-Duquenne-EN.pdf',
+      portfolio_link: base + 'assets/portfolio/DQN-Design-Identites-Visuelles-2020-2022.pdf',
+    };
+
+    if (EMAILJS_READY && window.emailjs) {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => {
+          status.textContent = 'C\'est envoyé ! Vérifie ta boîte mail (et les spams).';
+          status.className = 'email-capture__status is-ok';
+          form.reset();
+        })
+        .catch(() => {
+          status.textContent = 'Erreur d\'envoi — réessaie ou écris à contact@quentinduquenne.fr.';
+          status.className = 'email-capture__status is-err';
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
+        });
+    } else {
+      // Repli sans configuration EmailJS : ouvre un email pré-rempli vers Quentin
+      const subject = encodeURIComponent('Demande du dossier PPI complet');
+      const body = encodeURIComponent(`Bonjour Quentin,\n\nPourriez-vous m'envoyer le dossier PPI complet (CV + portfolio) ?\nMon email : ${email}\n\nMerci !`);
+      window.location.href = `mailto:contact@quentinduquenne.fr?subject=${subject}&body=${body}`;
+      status.textContent = 'Configuration email en attente — ton client mail va s\'ouvrir pour envoyer la demande directement.';
+      status.className = 'email-capture__status is-ok';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalLabel;
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- Formulaires "Recevoir le PDF par email" (Annexes + CTA final) ----
+  wireEmailForm('pdfEmailForm', 'pdfEmailInput', 'pdfEmailStatus');
+  wireEmailForm('pdfEmailFormMain', 'pdfEmailInputMain', 'pdfEmailStatusMain');
+
   // ---- Sidebar mobile toggle ----
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('sidebarToggle');
