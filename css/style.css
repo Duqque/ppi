@@ -428,15 +428,58 @@ section { position: relative; }
 }
 .btn-ghost:hover { border-color: var(--violet); color: var(--violet); }
 
-/* ---------- FOOTER ---------- */
-.qd-footer { background: var(--ink); color: #fff; padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; margin-top: 2rem; }
-.qd-footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
-@media (max-width: 800px) { .qd-footer__grid { grid-template-columns: 1fr; } }
-.qd-footer__pill { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet); font-weight: 700; }
-.qd-footer__big { display: block; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-top: 10px; letter-spacing: -0.02em; }
-.qd-footer__big em { color: rgba(255,255,255,0.5); font-style: normal; }
-.qd-footer__small { display: block; margin-top: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
-.qd-footer__bottom { display: flex; justify-content: space-between; padding-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: 10px; }
+/* ---------- FOOTER — même style que le portfolio quentinduquenne.fr ---------- */
+.qd-footer { margin-top: 2rem; padding-bottom: 24px; }
+
+.qd-footer__panel {
+  background: var(--violet); color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 56px 56px 0;
+  position: relative; overflow: hidden;
+}
+@media (max-width: 700px) { .qd-footer__panel { padding: 40px 28px 0; } }
+
+.qd-footer__top { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2.5rem; position: relative; z-index: 2; }
+@media (max-width: 900px) { .qd-footer__top { grid-template-columns: 1fr; gap: 2rem; } }
+.qd-footer__col { display: flex; flex-direction: column; gap: 12px; }
+
+.qd-footer__pill {
+  display: inline-flex; align-items: center; width: max-content;
+  background: #fff; color: var(--violet);
+  border-radius: 999px; padding: 6px 14px;
+  font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.qd-footer__big { display: block; font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #fff; text-decoration: none; }
+.qd-footer__big em { color: rgba(255,255,255,0.6); font-style: normal; }
+.qd-footer__small { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+
+.qd-footer__maplink {
+  display: inline-flex; align-items: center; gap: 6px; width: max-content;
+  color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+  border-bottom: 2px solid rgba(255,255,255,0.4); padding-bottom: 2px;
+  transition: border-color .2s;
+}
+.qd-footer__maplink:hover { border-color: #fff; }
+
+.qd-footer__wordmark {
+  margin: 48px -8px -12px; position: relative; z-index: 1; pointer-events: none; user-select: none;
+  height: clamp(90px, 18vw, 190px); display: flex; align-items: stretch; justify-content: center;
+}
+.qd-footer__wordmark svg { width: 100%; height: 100%; display: block; }
+.qd-footer__wordmark svg path { fill: #fff; opacity: 0.95; }
+
+.qd-footer__legal {
+  position: relative; z-index: 3; border-top: 1px solid rgba(255,255,255,0.18);
+  padding: 18px 0; display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.78rem; color: rgba(255,255,255,0.75); flex-wrap: wrap; gap: 12px;
+}
+@media (max-width: 700px) { .qd-footer__legal { flex-direction: column; align-items: flex-start; gap: 10px; } }
+.qd-footer__credit-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--ink); color: #fff; padding: 6px 12px; border-radius: 6px;
+  font-weight: 700; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+}
 
 /* ---------- TEST CARDS — expansions ---------- */
 .test-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
