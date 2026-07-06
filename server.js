@@ -1,33 +1,70 @@
 /* ============================================================
- * PPI Quentin Duquenne — serveur statique + envoi email (Resend)
+ * PPI Quentin Duquenne — serveur (accès protégé + envoi email Resend)
  * ============================================================
- * Envoi transactionnel du dossier PPI via Resend, même pattern
- * que sur rokudan-saas (server/api-emails.mjs).
+ * 1) ACCÈS PROTÉGÉ PAR MOT DE PASSE (server/auth.js)
+ *    Variables d'environnement (Hostinger > Node.js > Variables
+ *    d'environnement, puis "Restart" l'app après les avoir ajoutées) :
+ *      SITE_PASSWORD    mot de passe d'accès (défaut : "jump2026")
+ *      SESSION_SECRET   secret de signature du cookie (à changer en prod)
  *
- * Variables d'environnement requises (Hostinger > Node.js > Variables
- * d'environnement, puis "Restart" l'app après les avoir ajoutées) :
- *   RESEND_API_KEY      (re_xxx — depuis resend.com/api-keys)
- *   RESEND_FROM_EMAIL   (par défaut : "Quentin Duquenne <onboarding@resend.dev>")
+ * 2) ENVOI TRANSACTIONNEL DU DOSSIER PPI VIA RESEND
+ *    même pattern que sur rokudan-saas (server/api-emails.mjs).
+ *      RESEND_API_KEY      (re_xxx — depuis resend.com/api-keys)
+ *      RESEND_FROM_EMAIL   (par défaut : "Quentin Duquenne <onboarding@resend.dev>")
  *
- * Tant qu'aucun domaine n'est vérifié sur Resend, l'adresse d'envoi par
- * défaut "onboarding@resend.dev" ne peut envoyer QUE vers l'adresse email
- * du compte Resend (limitation sandbox de Resend, pas un bug ici). Pour
- * envoyer vers n'importe quelle adresse (les vrais visiteurs du site) :
- *   1. Resend -> Domains -> Add Domain -> quentinduquenne.fr (ou le domaine réel)
- *   2. Ajoute les 3 enregistrements DNS fournis chez Hostinger (DNS / Nameservers)
- *   3. Une fois vérifié, mets RESEND_FROM_EMAIL = "Quentin Duquenne <contact@quentinduquenne.fr>"
+ *    Tant qu'aucun domaine n'est vérifié sur Resend, l'adresse d'envoi par
+ *    défaut "onboarding@resend.dev" ne peut envoyer QUE vers l'adresse email
+ *    du compte Resend (limitation sandbox de Resend, pas un bug ici). Pour
+ *    envoyer vers n'importe quelle adresse (les vrais visiteurs du site) :
+ *      1. Resend -> Domains -> Add Domain -> quentinduquenne.fr (ou le domaine réel)
+ *      2. Ajoute les 3 enregistrements DNS fournis chez Hostinger (DNS / Nameservers)
+ *      3. Une fois vérifié, mets RESEND_FROM_EMAIL = "Quentin Duquenne <contact@quentinduquenne.fr>"
  * ============================================================ */
 
 const express = require('express');
 const path = require('path');
 const { buildDossierEmailHtml } = require('./server/email-template');
+const { SITE_PASSWORD, requireAuth, setSessionCookie, clearSessionCookie, isAuthed } = require('./server/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const RESEND_API = 'https://api.resend.com/emails';
+const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname), { extensions: ['html'] }));
+
+// ---- Auth : login/logout (avant le middleware de protection) ----
+app.post('/api/login', (req, res) => {
+  const password = (req.body && req.body.password) || '';
+  if (password === SITE_PASSWORD) {
+    setSessionCookie(res);
+    return res.json({ ok: true });
+  }
+  return res.status(401).json({ error: 'Mot de passe incorrect.' });
+});
+
+app.post('/api/logout', (req, res) => {
+  clearSessionCookie(res);
+  res.json({ ok: true });
+});
+
+app.get('/api/session', (req, res) => {
+  res.json({ authed: isAuthed(req) });
+});
+
+// ---- Protection d'accès : rien du dossier sans session valide ----
+app.use(requireAuth);
+
+// ---- Fichiers statiques (avec cache long pour assets versionnés) ----
+app.use(express.static(path.join(__dirname), {
+  extensions: ['html'],
+  maxAge: ONE_WEEK,
+  setHeaders: (res, filePath) => {
+    if (/\.(html)$/.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  },
+}));
 
 async function sendViaResend({ to, subject, html }) {
   const apiKey = process.env.RESEND_API_KEY;

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#7747ff" />
+<title>Connexion — Dossier PPI · Quentin Duquenne</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body { min-height: 100svh; }
+  .login-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
+  .login-left { display: flex; flex-direction: column; justify-content: center; padding: 6vw 5vw; }
+  .login-left__inner { max-width: 400px; margin: 0 auto; width: 100%; }
+  .login-brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(2rem, 6vw, 4rem); }
+  .login-brand svg { height: 20px; width: auto; }
+  .login-brand svg path { fill: var(--ink); }
+  .login-title { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+  .login-title em { color: var(--violet); font-style: normal; }
+  .login-lead { margin-top: 12px; color: var(--ink-70); font-size: 0.95rem; line-height: 1.55; }
+  .login-form { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; }
+  .login-field label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--ink-70); margin-bottom: 6px; }
+  .login-field input {
+    width: 100%; box-sizing: border-box; height: 52px; padding: 0 18px; border-radius: 14px;
+    border: 1.5px solid var(--ink-15); font-family: var(--gilroy); font-size: 0.95rem; font-weight: 600;
+    color: var(--ink); background: #fff; box-shadow: 0 2px 8px rgba(10,10,10,0.05);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .login-field input::placeholder { color: var(--ink-30); font-weight: 500; }
+  .login-field input:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 4px var(--violet-10); }
+  .login-submit {
+    margin-top: 4px; width: 100%; box-sizing: border-box; height: 52px; background: var(--ink); color: #fff; border: 0;
+    border-radius: 999px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: background .25s, transform .2s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-submit:hover { background: var(--violet); transform: translateY(-1px); }
+  .login-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .login-error { color: #dc2626; font-size: 0.85rem; min-height: 1.2em; }
+  .login-hint { margin-top: 22px; font-size: 0.78rem; color: var(--ink-30); }
+
+  .login-right { position: relative; overflow: hidden; background: var(--violet); }
+  .login-right img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.92; }
+  .login-right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(119,71,255,0.25), rgba(10,10,10,0.55) 85%); }
+  .login-right__mark { position: absolute; top: 28px; left: 32px; z-index: 2; height: 22px; }
+  .login-right__mark svg path { fill: #fff; }
+  .login-right__quote { position: absolute; left: 32px; right: 32px; bottom: 32px; z-index: 2; color: #fff; }
+  .login-right__quote .qmark { font-size: 2.4rem; color: rgba(255,255,255,0.55); line-height: 0.6; font-family: var(--gilroy); }
+  .login-right__quote blockquote { margin: 6px 0 0; font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; line-height: 1.32; letter-spacing: -0.01em; }
+  .login-right__quote cite { display: block; margin-top: 16px; font-style: normal; font-size: 0.85rem; opacity: 0.85; }
+  .login-right__quote cite b { display: block; font-size: 0.92rem; }
+
+  @media (max-width: 860px) {
+    .login-split { grid-template-columns: 1fr; }
+    .login-right { display: none; }
+    .login-left { padding: 10vw 7vw; }
+  }
+</style>
+</head>
+<body>
+  <div class="login-split">
+    <div class="login-left">
+      <div class="login-left__inner">
+        <a href="https://quentinduquenne.fr" class="login-brand">
+          <svg viewBox="0 0 795.23 201.78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M95.06,0h24.21v156.94h-24.21v-16.14c-9.12,12.7-22.2,19.05-39.23,19.05-15.4,0-28.55-5.72-39.46-17.15C5.45,131.27,0,117.33,0,100.89s5.45-30.56,16.37-41.93c10.91-11.36,24.06-17.04,39.46-17.04,17.04,0,30.12,6.28,39.23,18.83V0ZM34.3,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M223.08,44.84h24.21v112.1h-24.21v-14.35c-7.32,11.51-18.91,17.26-34.75,17.26-12.86,0-23.24-4.11-31.16-12.33-7.92-8.22-11.88-19.5-11.88-33.85V44.84h24.21v66.36c0,8.37,2.24,14.8,6.73,19.28,4.48,4.49,10.61,6.73,18.38,6.73,8.52,0,15.39-2.65,20.63-7.96,5.23-5.31,7.85-13.41,7.85-24.33v-60.09Z"/><path d="M364.32,44.84h24.21v156.94h-24.21v-60.76c-9.12,12.56-22.2,18.83-39.23,18.83-15.4,0-28.55-5.68-39.46-17.04-10.91-11.36-16.37-25.33-16.37-41.93s5.45-30.38,16.37-41.81c10.91-11.43,24.06-17.15,39.46-17.15,17.04,0,30.12,6.35,39.23,19.05v-16.14ZM303.57,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M505.57,44.84h24.21v156.94h-24.21v-60.76c-9.12,12.56-22.2,18.83-39.23,18.83-15.4,0-28.55-5.68-39.46-17.04-10.91-11.36-16.37-25.33-16.37-41.93s5.45-30.38,16.37-41.81c10.91-11.43,24.06-17.15,39.46-17.15,17.04,0,30.12,6.35,39.23,19.05v-16.14ZM444.81,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M633.58,44.84h24.21v112.1h-24.21v-14.35c-7.32,11.51-18.91,17.26-34.75,17.26-12.86,0-23.24-4.11-31.16-12.33-7.92-8.22-11.88-19.5-11.88-33.85V44.84h24.21v66.36c0,8.37,2.24,14.8,6.73,19.28,4.48,4.49,10.61,6.73,18.38,6.73,8.52,0,15.39-2.65,20.63-7.96,5.23-5.31,7.85-13.41,7.85-24.33v-60.09Z"/><path d="M705.1,111.2c1.79,8.52,5.9,15.06,12.33,19.62,6.42,4.56,14.27,6.84,23.54,6.84,12.85,0,22.49-4.63,28.92-13.9l19.95,11.66c-11.06,16.29-27.43,24.44-49.1,24.44-18.24,0-32.96-5.56-44.17-16.7-11.21-11.13-16.81-25.22-16.81-42.26s5.53-30.75,16.59-42.04c11.06-11.28,25.26-16.93,42.6-16.93,16.44,0,29.93,5.75,40.47,17.26,10.54,11.51,15.81,25.48,15.81,41.93,0,2.54-.3,5.91-.9,10.09h-89.23ZM704.88,91.47h65.91c-1.65-9.11-5.42-15.99-11.32-20.63-5.91-4.63-12.82-6.95-20.74-6.95-8.97,0-16.44,2.47-22.42,7.4-5.98,4.93-9.79,11.66-11.43,20.18Z"/></svg>
+        </a>
+
+        <h1 class="login-title">Accès au <em>dossier PPI.</em></h1>
+        <p class="login-lead">Ce Projet Personnel &amp; Individuel est un document privé. Entre le mot de passe qui t'a été transmis pour y accéder.</p>
+
+        <form class="login-form" id="loginForm" novalidate>
+          <div class="login-field">
+            <label for="loginPassword">Mot de passe</label>
+            <input type="password" id="loginPassword" name="password" placeholder="••••••••" required autofocus>
+          </div>
+          <button type="submit" class="login-submit" id="loginSubmit">Se connecter <span>→</span></button>
+          <p class="login-error" id="loginError"></p>
+        </form>
+
+        <p class="login-hint">Pas de mot de passe ? Écris à <a href="mailto:contact@quentinduquenne.fr" style="color:var(--violet); font-weight:600">contact@quentinduquenne.fr</a></p>
+      </div>
+    </div>
+
+    <div class="login-right">
+      <img src="assets/login-photo.jpg" alt="">
+      <svg class="login-right__mark" viewBox="0 0 795.23 201.78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M95.06,0h24.21v156.94h-24.21v-16.14c-9.12,12.7-22.2,19.05-39.23,19.05-15.4,0-28.55-5.72-39.46-17.15C5.45,131.27,0,117.33,0,100.89s5.45-30.56,16.37-41.93c10.91-11.36,24.06-17.04,39.46-17.04,17.04,0,30.12,6.28,39.23,18.83V0ZM34.3,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M223.08,44.84h24.21v112.1h-24.21v-14.35c-7.32,11.51-18.91,17.26-34.75,17.26-12.86,0-23.24-4.11-31.16-12.33-7.92-8.22-11.88-19.5-11.88-33.85V44.84h24.21v66.36c0,8.37,2.24,14.8,6.73,19.28,4.48,4.49,10.61,6.73,18.38,6.73,8.52,0,15.39-2.65,20.63-7.96,5.23-5.31,7.85-13.41,7.85-24.33v-60.09Z"/><path d="M364.32,44.84h24.21v156.94h-24.21v-60.76c-9.12,12.56-22.2,18.83-39.23,18.83-15.4,0-28.55-5.68-39.46-17.04-10.91-11.36-16.37-25.33-16.37-41.93s5.45-30.38,16.37-41.81c10.91-11.43,24.06-17.15,39.46-17.15,17.04,0,30.12,6.35,39.23,19.05v-16.14ZM303.57,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M505.57,44.84h24.21v156.94h-24.21v-60.76c-9.12,12.56-22.2,18.83-39.23,18.83-15.4,0-28.55-5.68-39.46-17.04-10.91-11.36-16.37-25.33-16.37-41.93s5.45-30.38,16.37-41.81c10.91-11.43,24.06-17.15,39.46-17.15,17.04,0,30.12,6.35,39.23,19.05v-16.14ZM444.81,126.56c6.72,6.8,15.17,10.2,25.33,10.2s18.61-3.4,25.34-10.2c6.72-6.8,10.09-15.36,10.09-25.67s-3.36-18.87-10.09-25.67c-6.73-6.8-15.17-10.2-25.34-10.2s-18.61,3.4-25.33,10.2c-6.73,6.8-10.09,15.36-10.09,25.67s3.36,18.87,10.09,25.67Z"/><path d="M633.58,44.84h24.21v112.1h-24.21v-14.35c-7.32,11.51-18.91,17.26-34.75,17.26-12.86,0-23.24-4.11-31.16-12.33-7.92-8.22-11.88-19.5-11.88-33.85V44.84h24.21v66.36c0,8.37,2.24,14.8,6.73,19.28,4.48,4.49,10.61,6.73,18.38,6.73,8.52,0,15.39-2.65,20.63-7.96,5.23-5.31,7.85-13.41,7.85-24.33v-60.09Z"/><path d="M705.1,111.2c1.79,8.52,5.9,15.06,12.33,19.62,6.42,4.56,14.27,6.84,23.54,6.84,12.85,0,22.49-4.63,28.92-13.9l19.95,11.66c-11.06,16.29-27.43,24.44-49.1,24.44-18.24,0-32.96-5.56-44.17-16.7-11.21-11.13-16.81-25.22-16.81-42.26s5.53-30.75,16.59-42.04c11.06-11.28,25.26-16.93,42.6-16.93,16.44,0,29.93,5.75,40.47,17.26,10.54,11.51,15.81,25.48,15.81,41.93,0,2.54-.3,5.91-.9,10.09h-89.23ZM704.88,91.47h65.91c-1.65-9.11-5.42-15.99-11.32-20.63-5.91-4.63-12.82-6.95-20.74-6.95-8.97,0-16.44,2.47-22.42,7.4-5.98,4.93-9.79,11.66-11.43,20.18Z"/></svg>
+      <div class="login-right__quote">
+        <span class="qmark">"</span>
+        <blockquote>Je ne conçois pas le développement sans le terrain. Et je ne conçois pas la performance sans un projet clair et construit.</blockquote>
+        <cite><b>Quentin Duquenne</b>Coach Judo Haut-Niveau · JC Chilly-Mazarin Morangis</cite>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorEl = document.getElementById('loginError');
+    const submitBtn = document.getElementById('loginSubmit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.textContent = '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Connexion…';
+
+      const password = document.getElementById('loginPassword').value;
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          const params = new URLSearchParams(window.location.search);
+          const next = params.get('next');
+          window.location.href = (next && next.startsWith('/')) ? next : '/';
+        } else {
+          errorEl.textContent = (data && data.error) || 'Mot de passe incorrect.';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Se connecter <span>→</span>';
+        }
+      } catch (err) {
+        errorEl.textContent = "Erreur réseau — réessaie.";
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Se connecter <span>→</span>';
+      }
+    });
+  </script>
+</body>
+</html>

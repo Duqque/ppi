@@ -92,9 +92,15 @@ ul { list-style: none; }
 .sidebar__nav ul.sub li a:hover { color: var(--ink); }
 .sidebar__nav ul.sub li a.is-current { background: var(--violet-06); color: var(--violet); font-weight: 700; }
 .sidebar__cta {
-  margin: 12px; padding: 12px 14px; text-align: center; background: var(--violet); color: #fff;
+  margin: 12px 12px 4px; padding: 12px 14px; text-align: center; background: var(--violet); color: #fff;
   border-radius: 999px; font-weight: 700; font-size: 0.82rem; flex-shrink: 0;
 }
+.sidebar__logout {
+  margin: 4px 12px 12px; padding: 8px 14px; text-align: center; background: transparent; color: var(--ink-50);
+  border: 0; font-family: var(--gilroy); font-weight: 600; font-size: 0.76rem; cursor: pointer; flex-shrink: 0;
+  transition: color .2s;
+}
+.sidebar__logout:hover { color: var(--ink); }
 .sidebar__mobile-bar { display: none; }
 .sidebar-overlay { display: none; }
 

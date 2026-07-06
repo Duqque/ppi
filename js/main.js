@@ -78,6 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
   wireEmailForm('pdfEmailForm', 'pdfEmailInput', 'pdfEmailStatus');
   wireEmailForm('pdfEmailFormMain', 'pdfEmailInputMain', 'pdfEmailStatusMain');
 
+  // ---- Déconnexion ----
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      try { await fetch('/api/logout', { method: 'POST' }); } catch (e) {}
+      window.location.href = '/login.html';
+    });
+  }
+
   // ---- Sidebar mobile toggle ----
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('sidebarToggle');
