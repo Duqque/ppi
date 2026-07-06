@@ -1,0 +1,15 @@
+{
+  "name": "ppi-quentin-duquenne",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Projet Personnel & Individuel — Quentin Duquenne (JUMP, Mastère Management du Sport)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
