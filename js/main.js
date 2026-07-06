@@ -78,6 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
   wireEmailForm('pdfEmailForm', 'pdfEmailInput', 'pdfEmailStatus');
   wireEmailForm('pdfEmailFormMain', 'pdfEmailInputMain', 'pdfEmailStatusMain');
 
+  // ---- Timeline horizontale : retire le fondu de droite une fois arrivé au bout ----
+  const timelineH = document.querySelector('.timeline-h');
+  if (timelineH) {
+    const updateFade = () => {
+      const atEnd = timelineH.scrollLeft + timelineH.clientWidth >= timelineH.scrollWidth - 4;
+      timelineH.classList.toggle('is-at-end', atEnd);
+    };
+    timelineH.addEventListener('scroll', updateFade, { passive: true });
+    updateFade();
+    window.addEventListener('resize', updateFade);
+  }
+
   // ---- Déconnexion ----
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {

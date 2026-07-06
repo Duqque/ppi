@@ -259,9 +259,15 @@ section { position: relative; }
 .timeline-h {
   display: flex; gap: 0; overflow-x: auto; padding: 10px 4px 22px; scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(90deg, black 0, black calc(100% - 56px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, black 0, black calc(100% - 56px), transparent 100%);
+}
+.timeline-h.is-at-end {
+  mask-image: none; -webkit-mask-image: none;
 }
 .timeline-h::-webkit-scrollbar { height: 5px; }
 .timeline-h::-webkit-scrollbar-thumb { background: var(--ink-12); border-radius: 999px; }
+.tlh-item:last-child { padding-right: 24px; }
 .tlh-item {
   flex: 0 0 auto; width: clamp(160px, 18vw, 210px); scroll-snap-align: start;
   position: relative; padding: 26px 20px 0 2px;
