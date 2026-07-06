@@ -461,34 +461,48 @@ section { position: relative; }
 .skill-icon__tile svg { width: 26px; height: 26px; }
 .skill-icon span { font-size: 0.72rem; color: var(--ink-70); font-weight: 600; }
 
-/* ---------- MON PARCOURS — grille visuelle ---------- */
-.parcours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 800px) { .parcours-grid { grid-template-columns: 1fr; } }
-.parcours-card {
-  background: #fff; border: 1px solid var(--ink-12); border-radius: var(--radius-lg);
-  padding: 22px; transition: transform .25s var(--ease-out-quart, ease), box-shadow .25s ease;
+/* ---------- MON PARCOURS — carrousel ---------- */
+.parcours-carousel-wrap { position: relative; margin-top: 8px; }
+.parcours-carousel {
+  display: flex; gap: 18px; overflow-x: auto; padding: 6px 4px 22px; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(90deg, black 0, black calc(100% - 56px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, black 0, black calc(100% - 56px), transparent 100%);
 }
-.parcours-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.parcours-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.parcours-carousel.is-at-end { mask-image: none; -webkit-mask-image: none; }
+.parcours-carousel::-webkit-scrollbar { height: 5px; }
+.parcours-carousel::-webkit-scrollbar-thumb { background: var(--ink-12); border-radius: 999px; }
+
+.parcours-slide {
+  flex: 0 0 auto; width: clamp(240px, 32vw, 300px); scroll-snap-align: start;
+  background: #fff; border: 1px solid var(--ink-12); border-radius: var(--radius-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform .25s var(--ease-out-quart, ease), box-shadow .25s ease;
+}
+.parcours-slide:last-child { margin-right: 20px; }
+.parcours-slide:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.parcours-slide__media { height: 150px; display: flex; align-items: center; justify-content: center; background: var(--violet-06); flex-shrink: 0; }
+.parcours-slide__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.parcours-slide__body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+.parcours-slide__top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .parcours-num {
   width: 32px; height: 32px; border-radius: 999px; background: var(--violet-10); color: var(--violet);
   display: grid; place-items: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
 }
-.parcours-icon { width: 32px; height: 32px; border-radius: 999px; background: var(--violet-06); color: var(--violet); display: grid; place-items: center; }
-.parcours-icon svg { width: 17px; height: 17px; }
-.parcours-card h4 { font-size: 1.02rem; margin-bottom: 8px; }
-.parcours-card p { font-size: 0.88rem; color: var(--ink-70); line-height: 1.55; }
+.parcours-slide h4 { font-size: 1rem; margin-bottom: 8px; }
+.parcours-slide p { font-size: 0.87rem; color: var(--ink-70); line-height: 1.55; }
 
-.parcours-card--feature {
-  grid-column: span 2; display: grid; grid-template-columns: 1fr 1.3fr; gap: 0;
-  padding: 0; overflow: hidden; align-items: stretch;
+.parcours-carousel__nav { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.parcours-carousel__arrow {
+  width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--ink-12); background: #fff;
+  color: var(--ink-70); display: grid; place-items: center; cursor: pointer; transition: border-color .2s, color .2s, background .2s;
+  flex-shrink: 0;
 }
-@media (max-width: 800px) { .parcours-card--feature { grid-template-columns: 1fr; } }
-.parcours-card--feature > img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; display: block; }
-.parcours-card--feature__body { padding: clamp(1.25rem, 3vw, 2rem); display: flex; flex-direction: column; justify-content: center; }
-.parcours-card--feature .parcours-card__top { margin-bottom: 10px; }
-.parcours-card--feature h4 { font-size: 1.15rem; }
-.parcours-card--feature p { font-size: 0.92rem; }
+.parcours-carousel__arrow:hover { border-color: var(--violet); color: var(--violet); }
+.parcours-carousel__arrow:disabled { opacity: 0.35; cursor: default; }
+.parcours-carousel__arrow:disabled:hover { border-color: var(--ink-12); color: var(--ink-70); }
+.parcours-carousel__arrow svg { width: 18px; height: 18px; }
+.parcours-carousel__counter { font-size: 0.8rem; color: var(--ink-50); font-weight: 600; letter-spacing: 0.03em; }
 
 /* ---------- ANNEXES — téléchargement CV & email ---------- */
 .cv-download-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }

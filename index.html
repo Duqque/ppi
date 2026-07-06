@@ -8,8 +8,8 @@
 <meta name="description" content="Projet Personnel et Individuel de Quentin Duquenne — Mastère Management du Sport, JUMP Académie des Métiers du Sport. Parcours, compétences, projet professionnel." />
 <link rel="preload" href="assets/fonts/Gilroy-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/Gilroy-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=4">
-<script src="js/main.js?v=4" defer></script>
+<link rel="stylesheet" href="css/style.css?v=5">
+<script src="js/main.js?v=5" defer></script>
 </head>
 <body>
 
@@ -64,6 +64,7 @@
             <li><a href="#p-jccmm">JC Chilly-Mazarin Morangis</a></li>
             <li><a href="#p-mastere">Mastère Management du Sport</a></li>
             <li><a href="#p-demain">Demain</a></li>
+            <li><a href="#p-ctf">Dans 5 à 10 ans</a></li>
           </ul>
         </li>
         <li data-section="competences">
@@ -416,80 +417,128 @@
     </div>
 
     <div class="wrap section-body">
-      <div class="parcours-grid">
+      <div class="parcours-carousel-wrap reveal">
+        <div class="parcours-carousel" id="parcoursCarousel">
 
-        <div class="parcours-card parcours-card--feature reveal" id="p-origine">
-          <img loading="lazy" decoding="async" src="assets/photos/parcours/origine.jpg" alt="Cours de judo pour jeunes enfants au JCCMM">
-          <div class="parcours-card--feature__body">
-            <div class="parcours-card__top"><span class="parcours-num">01</span></div>
-            <h4>À l'origine</h4>
-            <p>Leforest (62), judo depuis 2004. Très vite, un cadre de construction personnelle plus qu'un loisir : la performance se joue dans les détails et la régularité.</p>
+          <div class="parcours-slide" id="p-origine">
+            <div class="parcours-slide__media"><img loading="lazy" decoding="async" src="assets/photos/parcours/origine.jpg" alt="Cours de judo pour jeunes enfants au JCCMM"></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">01</span></div>
+              <h4>À l'origine</h4>
+              <p>Leforest (62), judo depuis 2004. Très vite, un cadre de construction personnelle plus qu'un loisir : la performance se joue dans les détails et la régularité.</p>
+            </div>
           </div>
-        </div>
 
-        <div class="parcours-card reveal" id="p-lycee">
-          <div class="parcours-card__top"><span class="parcours-num">02</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span></div>
-          <h4>Le lycée et le Pôle Espoirs</h4>
-          <p>Pôle Espoirs de Tourcoing à 15 ans + Bac ES en internat. Journées millimétrées : j'apprends à hiérarchiser et anticiper.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-civique">
-          <div class="parcours-card__top"><span class="parcours-num">03</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span></div>
-          <h4>Service civique à la Ligue HDF</h4>
-          <p>Suivi des jeunes, relais internat/entraîneurs, premiers visuels de communication. Je découvre PhotoFiltre puis Photoshop.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-couverture">
-          <div class="parcours-card__top"><span class="parcours-num">04</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span></div>
-          <h4>Luc Daniel Couverture</h4>
-          <p>Trois semaines de travail manuel en 2017 pour financer un voyage au Japon. Un choc de réalité sur le lien effort-résultat.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-staps">
-          <div class="parcours-card__top"><span class="parcours-num">05</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span></div>
-          <h4>La Faculté STAPS</h4>
-          <p>Amphis et cours magistraux ne me correspondent pas — formé dans l'action, sur le tatami. Réorientation lucide vers le web design.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-mjm">
-          <div class="parcours-card__top"><span class="parcours-num">06</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span></div>
-          <h4>MJM Graphic Design</h4>
-          <p>Titre RNCP Concepteur de Sites Web, mention Bien. Juillet 2020 : création de DQN Design — j'entre dans l'entrepreneuriat.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-diplomes">
-          <div class="parcours-card__top"><span class="parcours-num">07</span><span class="parcours-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg></span></div>
-          <h4>Les diplômes d'état</h4>
-          <p>BPJEPS (2021) puis DEJEPS à la Dojo Academy — 1ère promotion, non validé pour raisons personnelles mais étape structurante.</p>
-        </div>
-
-        <div class="parcours-card reveal" id="p-jfp">
-          <div class="parcours-card__top"><span class="parcours-num">08</span><span class="org-chip"><img src="assets/logo/puc.svg" alt=""><span>PUC</span></span></div>
-          <h4>Judo France Paris &amp; PUC</h4>
-          <p>Professeur au groupe scolaire Fénelon Sainte-Marie (4-18 ans). L'expérience me révèle ce que je recherche : du haut niveau, de l'ambition.</p>
-        </div>
-
-        <div class="parcours-card parcours-card--feature reveal" id="p-jccmm">
-          <img loading="lazy" decoding="async" src="assets/photos/parcours/jccmm.jpg" alt="Athlète du JCCMM en concentration avant un combat">
-          <div class="parcours-card--feature__body">
-            <div class="parcours-card__top"><span class="parcours-num">09</span><span class="org-chip"><img src="assets/logo/jccmm.svg" alt=""><span>JCCMM</span></span></div>
-            <h4>Le JC Chilly-Mazarin Morangis</h4>
-            <p>Depuis 2024, Responsable Cadets HN &amp; Chargé Com./Développement. 4 médailles nationales, 3 renforts internationaux recrutés en République Tchèque, MyJCCMM conçu et déployé.</p>
+          <div class="parcours-slide" id="p-lycee">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">02</span></div>
+              <h4>Le lycée et le Pôle Espoirs</h4>
+              <p>Pôle Espoirs de Tourcoing à 15 ans + Bac ES en internat. Journées millimétrées : j'apprends à hiérarchiser et anticiper.</p>
+            </div>
           </div>
+
+          <div class="parcours-slide" id="p-civique">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">03</span></div>
+              <h4>Service civique à la Ligue HDF</h4>
+              <p>Suivi des jeunes, relais internat/entraîneurs, premiers visuels de communication. Je découvre PhotoFiltre puis Photoshop.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-couverture">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">04</span></div>
+              <h4>Luc Daniel Couverture</h4>
+              <p>Trois semaines de travail manuel en 2017 pour financer un voyage au Japon. Un choc de réalité sur le lien effort-résultat.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-staps">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">05</span></div>
+              <h4>La Faculté STAPS</h4>
+              <p>Amphis et cours magistraux ne me correspondent pas — formé dans l'action, sur le tatami. Réorientation lucide vers le web design.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-mjm">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">06</span></div>
+              <h4>MJM Graphic Design</h4>
+              <p>Titre RNCP Concepteur de Sites Web, mention Bien. Juillet 2020 : création de DQN Design — j'entre dans l'entrepreneuriat.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-diplomes">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">07</span></div>
+              <h4>Les diplômes d'état</h4>
+              <p>BPJEPS (2021) puis DEJEPS à la Dojo Academy — 1ère promotion, non validé pour raisons personnelles mais étape structurante.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-jfp">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">08</span><span class="org-chip"><img src="assets/logo/puc.svg" alt=""><span>PUC</span></span></div>
+              <h4>Judo France Paris &amp; PUC</h4>
+              <p>Professeur au groupe scolaire Fénelon Sainte-Marie (4-18 ans). L'expérience me révèle ce que je recherche : du haut niveau, de l'ambition.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-jccmm">
+            <div class="parcours-slide__media"><img loading="lazy" decoding="async" src="assets/photos/parcours/jccmm.jpg" alt="Athlète du JCCMM en concentration avant un combat"></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">09</span><span class="org-chip"><img src="assets/logo/jccmm.svg" alt=""><span>JCCMM</span></span></div>
+              <h4>Le JC Chilly-Mazarin Morangis</h4>
+              <p>Depuis 2024, Responsable Cadets HN &amp; Chargé Com./Développement. 4 médailles nationales, 3 renforts internationaux recrutés en République Tchèque, MyJCCMM conçu et déployé.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-mastere">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">10</span><span class="org-chip"><img src="assets/logo/jump.svg" alt=""><span>JUMP</span></span></div>
+              <h4>Mastère Management du Sport</h4>
+              <p>Titre Manager du Développement Commercial. Mémoire : « Pourquoi le judo doit-il se réinventer pour se professionnaliser ? »</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-demain">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">11</span><span class="org-chip"><img src="assets/logo/benfica.svg" alt=""><span>Benfica</span></span></div>
+              <h4>Demain</h4>
+              <p>Court terme : coach au Portugal. D'ici 3-4 ans : direction technique ou sportive.</p>
+            </div>
+          </div>
+
+          <div class="parcours-slide" id="p-ctf">
+            <div class="parcours-slide__media"><span class="icon-tile" style="width:64px;height:64px;margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16v6c0 6-4 9-8 12-4-3-8-6-8-12V3Z"/></svg></span></div>
+            <div class="parcours-slide__body">
+              <div class="parcours-slide__top"><span class="parcours-num">12</span></div>
+              <h4>Dans 5 à 10 ans</h4>
+              <p>CTF en France, le poste que j'ai refusé.</p>
+            </div>
+          </div>
+
         </div>
 
-        <div class="parcours-card reveal" id="p-mastere">
-          <div class="parcours-card__top"><span class="parcours-num">10</span><span class="org-chip"><img src="assets/logo/jump.svg" alt=""><span>JUMP</span></span></div>
-          <h4>Mastère Management du Sport</h4>
-          <p>Titre Manager du Développement Commercial. Mémoire : « Pourquoi le judo doit-il se réinventer pour se professionnaliser ? »</p>
+        <div class="parcours-carousel__nav">
+          <button class="parcours-carousel__arrow" id="parcoursPrev" type="button" aria-label="Étape précédente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <span class="parcours-carousel__counter" id="parcoursCounter">01 / 11</span>
+          <button class="parcours-carousel__arrow" id="parcoursNext" type="button" aria-label="Étape suivante">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
-
-        <div class="parcours-card reveal" id="p-demain">
-          <div class="parcours-card__top"><span class="parcours-num">11</span><span class="org-chip"><img src="assets/logo/benfica.svg" alt=""><span>Benfica</span></span></div>
-          <h4>Demain</h4>
-          <p>Court terme : coach au Portugal. D'ici 3-4 ans : direction technique ou sportive. Projet ultime : une entreprise entre sport et digital.</p>
-        </div>
-
       </div>
 
       <h3 class="reveal" style="margin-top:32px">Mes résultats au JC Chilly-Mazarin Morangis</h3>

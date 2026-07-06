@@ -90,6 +90,65 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateFade);
   }
 
+  // ---- Carrousel "Mon parcours" : flèches, compteur, fondu de fin ----
+  const parcoursCarousel = document.getElementById('parcoursCarousel');
+  if (parcoursCarousel) {
+    const slides = Array.from(parcoursCarousel.querySelectorAll('.parcours-slide'));
+    const prevBtn = document.getElementById('parcoursPrev');
+    const nextBtn = document.getElementById('parcoursNext');
+    const counter = document.getElementById('parcoursCounter');
+    const total = slides.length;
+
+    let activeIndex = 0;
+
+    const closestIndex = () => {
+      let closest = 0;
+      let closestDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(slide.offsetLeft - parcoursCarousel.scrollLeft);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      return closest;
+    };
+
+    const render = (idx, atEnd) => {
+      if (counter) counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = atEnd;
+    };
+
+    const updateCarousel = () => {
+      const atEnd = parcoursCarousel.scrollLeft + parcoursCarousel.clientWidth >= parcoursCarousel.scrollWidth - 4;
+      parcoursCarousel.classList.toggle('is-at-end', atEnd);
+      activeIndex = atEnd ? total - 1 : closestIndex();
+      render(activeIndex, atEnd);
+    };
+
+    const scrollToIndex = (idx) => {
+      activeIndex = Math.max(0, Math.min(total - 1, idx));
+      slides[activeIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      render(activeIndex, activeIndex === total - 1);
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollToIndex(activeIndex - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollToIndex(activeIndex + 1));
+    parcoursCarousel.addEventListener('scroll', updateCarousel, { passive: true });
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+
+    // Liens du sommaire (sidebar) pointant vers une étape du carrousel :
+    // le scroll natif de l'ancre ne défile pas le carrousel horizontal, on le fait à la main.
+    document.querySelectorAll('a[href^="#p-"]').forEach(a => {
+      const idx = slides.findIndex(slide => '#' + slide.id === a.getAttribute('href'));
+      if (idx === -1) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('parcours').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        scrollToIndex(idx);
+      });
+    });
+  }
+
   // ---- Déconnexion ----
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
