@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function buildRadarSVG(data, max) {
     const size = 420, center = size / 2, radius = size / 2 - 60;
+    const hPad = 95, vPad = 20;
     const n = data.length;
     const angleFor = (i) => (Math.PI * 2 * i / n) - Math.PI / 2;
     const pointFor = (i, v) => {
@@ -266,11 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return `<circle cx="${x}" cy="${y}" r="4.5" fill="#7747ff" />`;
     }).join('');
     const labels = data.map((d, i) => {
-      const [x, y] = pointFor(i, max + 2.2);
+      const [x, y] = pointFor(i, max + 1.8);
       const anchor = Math.abs(x - center) < 10 ? 'middle' : (x > center ? 'start' : 'end');
-      return `<text x="${x}" y="${y}" font-size="13" text-anchor="${anchor}" dominant-baseline="middle">${d.label}</text>`;
+      return `<text x="${x}" y="${y}" font-size="12.5" text-anchor="${anchor}" dominant-baseline="middle">${d.label}</text>`;
     }).join('');
-    return `<svg viewBox="0 0 ${size} ${size}" width="100%" height="100%" style="max-width:420px">
+    return `<svg viewBox="${-hPad} ${-vPad} ${size + hPad * 2} ${size + vPad * 2}" width="100%" height="100%" style="max-width:420px">
       ${rings}${axes}
       <polygon points="${shapePts}" fill="rgba(119,71,255,0.18)" stroke="#7747ff" stroke-width="2.5" />
       ${dots}${labels}
