@@ -3,14 +3,14 @@
  * un seul mot de passe pour accéder au dossier PPI).
  *
  * Variables d'environnement :
- *   SITE_PASSWORD    mot de passe requis pour entrer (défaut : "jump2026")
+ *   SITE_PASSWORD    mot de passe requis pour entrer (défaut : "studency")
  *   SESSION_SECRET   secret de signature du cookie de session
  *                     (défaut fourni, mais À CHANGER sur Hostinger)
  * ============================================================ */
 
 const crypto = require('crypto');
 
-const SITE_PASSWORD = process.env.SITE_PASSWORD || 'jump2026';
+const SITE_PASSWORD = process.env.SITE_PASSWORD || 'studency';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'ppi-duquenne-change-me-in-hostinger-env';
 const COOKIE_NAME = 'ppi_session';
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30 jours
